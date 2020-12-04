@@ -37,13 +37,10 @@ db.mongoose
 
 app.use(express.json())
 
-const subscribersRouter = require('./routes/subscribers')
-app.use('/v1/subscribers', subscribersRouter)
-
 const alunoRouter = require('./routes/aluno')
 app.use('/v1/aluno', alunoRouter)
 
-const cursoRouter = require('./routes/curso')
-app.use('/v1/curso', cursoRouter)
+const socialPost = require('./routes/socialPost')
+app.use('/v1/socialPost', socialPost)
 
 app.listen(3000, () => console.log('Server started.'))
