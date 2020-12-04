@@ -4,9 +4,9 @@ const router = express.Router()
 const socialController = require("../controllers/socialController")
 const middlewares = require('../middlewares/social')
 
-router.get('/:id', middlewares.getSocialPostId, socialController.getById)
+router.get('/:id', middlewares.getSocialPostId, socialController.defaultGet)
 
-router.get('/:userId', middlewares.getSocialPostUserId, socialController.getByUserId)
+router.get('/user/:userId', middlewares.getSocialPostUserId, socialController.defaultGet)
 
 router.post('/', socialController.criarPost)
 

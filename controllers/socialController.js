@@ -1,20 +1,13 @@
 const uuidv4 = require("uuid").v4
 const uuid = uuidv4();
-
 const SocialPost = require('../models/socialPost')
-const middlewares = require('../middlewares/social')
 
 // obter post por ID
-exports.getById = (req, res) => {
+exports.defaultGet = (req, res) => {
     res.json(res.socialPost)
 }
 
-//// obter posts por userId
-exports.getByUserId = (req, res) => {
-    res.json(res.socialPost)
-}
-
-exports.criarPost = (req, res) => {
+exports.criarPost = async (req, res) => {
     const socialPost = new SocialPost({
         userId: req.body.userId ?? uuid,
         foto: req.body.foto,
@@ -23,7 +16,7 @@ exports.criarPost = (req, res) => {
         dataDeModificacao: req.body.dataDeModificacao
     })
     try {
-        const created = socialPost.save()
+        const created = await socialPost.save()
 
         res.status(201).json(created)
     } catch (err) {
@@ -54,5 +47,17 @@ exports.delSocial = (req, res) => {
         res.json({ message: 'Deleted Successfully' })
     } catch (err) {
         res.status(500).json({ message: err.message })
+    }
+}
+
+
+exports.postar = (req, res) => {
+    res.socialPost.status.publicado = true;
+    try {
+        const updated = res.socialPost.save()
+
+        res.json(updated)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
     }
 }
