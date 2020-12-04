@@ -10,16 +10,6 @@ app.use(morgan(':method :url: :status :res[content-length] - :response-time ms')
 // monitoramento
 app.use(require('express-status-monitor')())
 
-/*
-FORMA DE CONEXÃO ATLAS CLOUD
-// configurar acesso a banco mongodb
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL)
-const db = mongoose.connection
-db.on('error', (error) => console.log(error))
-db.once('open', () => console.log('Connected to Mongo DB'))
-*/
-
 //FORMA DE CONEXÃO LOCAL ON-PREMISSEn
 const db = require("./databases");
 db.mongoose
@@ -42,5 +32,9 @@ app.use('/v1/aluno', alunoRouter)
 
 const socialPost = require('./routes/socialPost')
 app.use('/v1/socialPost', socialPost)
+
+const socialPostBusiness = require('./routes/socialPostbusiness')
+app.use('/v1/socialPostbusiness', socialPostBusiness)
+
 
 app.listen(3000, () => console.log('Server started.'))

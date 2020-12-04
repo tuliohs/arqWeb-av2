@@ -7,24 +7,24 @@ const socialPostSchema = new mongoose.Schema({
         required: true
     },
     foto: {
-        //texto: {
-        type: String,
-        required: true
-        //},
-        //url: {
-        //    type: String,
-        //    required: true
-        //}
+        texto: {
+            type: String,
+            required: true
+        },
+        url: {
+            type: String,
+            required: true
+        }
     },
     status: {
-        //criado: {
-        type: Boolean,
-        //    required: true
-        //},
-        //publicado: {
-        //    type: Boolean,
-        //    required: true
-        //}
+        criado: {
+            type: Boolean,
+            required: true
+        },
+        publicado: {
+            type: Boolean,
+            required: true,
+        }
     },
     dataDeCriacao: {
         type: Date,
